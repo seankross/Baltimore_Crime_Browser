@@ -1,0 +1,1 @@
+crime <- readRDS("crime.rds")
