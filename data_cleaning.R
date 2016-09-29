@@ -7,18 +7,27 @@ library(lubridate)
 library(readr)
 library(magrittr)
 library(stringr)
+library(purrr)
 
 crime <- read_csv("crime.csv")
 
 colnames(crime)[which(colnames(crime) == "Inside/Outside")] <- "Inside_Outside"
+colnames(crime)[which(colnames(crime) == "Location 1")] <- "Location_1"
 
 crime %<>%
   mutate(CrimeDate = mdy(CrimeDate)) %>%
   mutate(CrimeTime = hms(CrimeTime)) %>%
   mutate(Inside_Outside = recode(Inside_Outside, "I" = "Inside", 
-                                 "O" = "Outside")) %>%
-  mutate(Lat = str_extract_all(`Location 1`, "-?[0-9]{2}\\.[0-9]+")[[1]][1]) %>%
-  mutate(Lng = str_extract_all(`Location 1`, "-?[0-9]{2}\\.[0-9]+")[[1]][2]) %>%
-  select(-Post, -`Location 1`, -`Total Incidents`)
+                                 "O" = "Outside"))
+
+crime$lat <- crime$Location_1 %>%
+  map_chr(function(x){str_extract_all(x, "-?[0-9]{2}\\.[0-9]+")[[1]][1]})
+crime$lng <- crime$Location_1 %>%
+  map_chr(function(x){str_extract_all(x, "-?[0-9]{2}\\.[0-9]+")[[1]][2]})
+
+crime %<>%
+  select(-Post, -Location_1, -`Total Incidents`) %>%
+  filter(!is.na(lat)) %>%
+  filter(!is.na(lng))
 
 saveRDS(crime, "crime.rds")

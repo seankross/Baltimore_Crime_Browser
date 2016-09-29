@@ -13,18 +13,32 @@ dashboardPage(
     )
   ),
   dashboardBody(
-    fluidRow(
-      column(width = 8,
-        box(width = NULL,
-            leafletOutput("crime_map", height = 500))
+    tabItems(
+      tabItem(tabName = "map",
+      fluidRow(
+        column(width = 8,
+               box(width = NULL,
+                   leafletOutput("crime_map", height = 500))
+        ),
+        column(width = 3,
+               box(width = NULL,
+                   dateRangeInput("date1", "Select dates to visualize.",
+                                  start = "2015-06-01", end = "2015-07-01",
+                                  min = min(crime$CrimeDate), max = max(crime$CrimeDate))
+               )
+        )
+      )
       ),
-      column(width = 3,
-             box(width = NULL,
-                 dateRangeInput("date1", "Select a range to visualize.",
-                                start = "2012-01-01", end = "2016-01-01",
-                                min = min(crime$CrimeDate), max = max(crime$CrimeDate))
-                 )
-             )
+      tabItem(tabName = "graphs",
+              fluidRow(
+                column(width = 6,
+                       box(width = NULL,
+                           plotOutput("daily_plot"))),
+                column(width = 6,
+                       box(width = NULL,
+                           plotOutput("desc_plot")))
+              )),
+      tabItem(tabName = "about")
     )
   )
 )
