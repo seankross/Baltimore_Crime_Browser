@@ -25,7 +25,16 @@ dashboardPage(
                    dateRangeInput("date1", "Select dates to visualize.",
                                   start = "2015-06-01", end = "2015-07-01",
                                   min = min(crime$CrimeDate), max = max(crime$CrimeDate))
-               )
+               ),
+               box(width = NULL,
+                   h3("Number of Crimes"),
+                   h4(textOutput("total_crimes"))),
+               box(width = NULL,
+                   h3("Most Common Crime"),
+                   h4(textOutput("common_crime"))),
+               box(width = NULL,
+                   h3("Day of the Week with the Most Crime"),
+                   h4(textOutput("weekday_crime")))
         )
       )
       ),
@@ -37,8 +46,23 @@ dashboardPage(
                 column(width = 6,
                        box(width = NULL,
                            plotOutput("desc_plot")))
+              ),
+              fluidRow(
+                column(width = 3,
+                       box(width = NULL,
+                           dateRangeInput("date2", "Select dates to visualize.",
+                                          start = "2015-06-01", end = "2015-07-01",
+                                          min = min(crime$CrimeDate), max = max(crime$CrimeDate))
+                       )
+                )
               )),
-      tabItem(tabName = "about")
+      tabItem(tabName = "about",
+              fluidRow(
+                column(width = 6,
+                       box(width = NULL,
+                           includeMarkdown("about.md")))
+              )
+      )
     )
   )
 )

@@ -30,4 +30,9 @@ crime %<>%
   filter(!is.na(lat)) %>%
   filter(!is.na(lng))
 
+crime %<>%
+  filter(!is.na(CrimeDate)) %>%
+  mutate(popdate = paste("Date:", CrimeDate)) %>%
+  mutate(content = paste(popdate, Location, Description, sep = "<br/>"))
+
 saveRDS(crime, "crime.rds")
