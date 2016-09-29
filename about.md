@@ -28,6 +28,7 @@ The following R Packages are used to render this app:
 - dplyr
 - leaflet
 - ggplot2
+- lubridate
 
 To run this app locally make sure you've installed the R packages mentioned above, then
 run:

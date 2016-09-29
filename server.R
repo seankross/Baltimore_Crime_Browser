@@ -9,6 +9,7 @@ library(shiny)
 library(dplyr)
 library(leaflet)
 library(ggplot2)
+library(lubridate)
 
 shinyServer(function(input, output, session) {
   filtered_crime <- reactive({
