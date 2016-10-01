@@ -1,5 +1,18 @@
 # Baltimore Crime Browser
 
+## Install
+
+```
+# install.packages("shiny")
+# install.packages("shinydashboard")
+# install.packages("dplyr")
+# install.packages("leaflet")
+# install.packages("ggplot2")
+# install.packages("lubridate")
+
+shiny::runGitHub("seankross/Baltimore_Crime_Browser")
+```
+
 This application is an example of a dashboard that can be quickly prototyped
 and deployed in order to visualize crime in Baltimore City. The dashboard
 includes the following features:
@@ -11,30 +24,4 @@ includes the following features:
 3. A calendar that allows the user to filter crime events by date. This calendar
 is consistent throughout the app.
 4. Visualizations of crime over time and by type of crime.
-
-The following R Packages were used to prepare the data for this app:
-
-- dplyr
-- lubridate
-- readr
-- magrittr
-- stringr
-- purrr
-
-The following R Packages are used to render this app:
-
-- shiny
-- shinydashboard
-- dplyr
-- leaflet
-- ggplot2
-- lubridate
-
-To run this app locally make sure you've installed the R packages mentioned above, then
-run:
-
-```
-shiny::runGitHub("seankross/Baltimore_Crime_Browser")
-```
-
 
