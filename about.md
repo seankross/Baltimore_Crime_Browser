@@ -10,7 +10,7 @@ includes the following features:
 2. Widgets that provide aggregate summaries of crime events.
 3. A calendar that allows the user to filter crime events by date. This calendar
 is consistent throughout the app.
-4. Vizualizations of crime over time and by type of crime.
+4. Visualizations of crime over time and by type of crime.
 
 The following R Packages were used to prepare the data for this app:
 
